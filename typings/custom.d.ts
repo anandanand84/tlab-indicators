@@ -152,7 +152,8 @@ declare class RenkoInput extends IndicatorInput {
     timestamp?: number[];
 }
 declare function renko(input: RenkoInput): CandleList;
- class StockData {
+
+declare class StockData {
     open: number[];
     high: number[];
     low: number[];
@@ -160,6 +161,7 @@ declare function renko(input: RenkoInput): CandleList;
     reversedInput?: boolean;
     constructor(open: number[], high: number[], low: number[], close: number[], reversedInput: boolean);
 }
+
 declare class CandleData {
     open?: number;
     high?: number;
@@ -270,7 +272,7 @@ declare function ichimokucloud(input: IchimokuCloudInput): IchimokuCloudOutput[]
 /**
  * Created by AAravindan on 5/7/16.
  */
- class FixedSizeLinkedList extends LinkedList {
+declare class FixedSizeLinkedList extends LinkedList {
     size: number;
     maintainHigh?: boolean;
     maintainLow?: boolean;

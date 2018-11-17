@@ -1,8 +1,6 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "declaration": true,
-    "declarationDir": "./declarations",
     "lib": [
       "es5",
       "es2015.iterable",
@@ -13,18 +11,13 @@
     "module": "es6",
     "target": "es6",
     "noImplicitAny": false,
-    "dist": "./lib",
     "preserveConstEnums": true,
     "removeComments": false,
     "sourceMap": false,
     "baseUrl": ".", // This must be specified if "paths" is.
-    "typeRoots" : ["typings", "node_modules/**/@types"]
+    "typeRoots" : ["typings"]
   },
   "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*-spec.ts"
+    "indicators/*.ts"
   ]
 }

@@ -1066,7 +1066,7 @@ interface var_output {
   var:number[];
 }
 
-declare function var (input: var_input) : number[]; 
+declare function variance (input: var_input) : number[]; 
 
 interface vhf_input {
   "values":number[];
