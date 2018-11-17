@@ -16,8 +16,5 @@
     "sourceMap": false,
     "baseUrl": ".", // This must be specified if "paths" is.
     "typeRoots" : ["typings"]
-  },
-  "include": [
-    "indicators/*.ts"
-  ]
+  }
 }
