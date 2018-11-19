@@ -1,0 +1,121 @@
+{
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	"Input Number": {
+		"scope": "javascript,typescript",
+		"prefix": "inputNumber",
+		"body": [
+			"inputNumber(${1:'input name'}, ${2:10}, { min : ${3:1}, max : ${4:300}, step : ${5:1}});${0}",
+		],
+		"description": "Get a number as a user input"
+	},
+	"Input Boolean": {
+		"scope": "javascript,typescript",
+		"prefix": "inputBoolean",
+		"body": [
+			"inputBoolean(${1:'input name'}, ${2:false});;${0}",
+		],
+		"description": "Get a boolean (true or false) as a user input"
+	},
+	"Input Source": {
+		"scope": "javascript,typescript",
+		"prefix": "inputSource",
+		"body": [
+			"inputSource(${1:'input name'}, ${2:\"close\"});;${0}",
+		],
+		"description": "Get chart data source as input value, it can be candlestick values like open, close.. or values of other indicators"
+	},
+	"Input Line Width": {
+		"scope": "javascript,typescript",
+		"prefix": "inputLineWidth",
+		"body": [
+			"inputLineWidth(${1:'input name'}, ${2:2});${0}",
+		],
+		"description": "Get width of a line to draw as user input"
+	},
+	"Input Opacity": {
+		"scope": "javascript,typescript",
+		"prefix": "inputOpacity",
+		"body": [
+			"inputOpacity(${1:'input name'}, ${2:0.3});${0}",
+		],
+		"description": "Get Opacity value as user input"
+	},
+	"Input String": {
+		"scope": "javascript,typescript",
+		"prefix": "inputString",
+		"body": [
+			"inputString(${1:'input name'}, ${2:'mydefaultstring'});${0}",
+		],
+		"description": "Get a string as user input"
+	},
+	"Input Color": {
+		"scope": "javascript,typescript",
+		"prefix": "inputColor",
+		"body": [
+			"inputColor(${1:'input name'}, ${2:\"#a96ddb\"});${0}",
+		],
+		"description": "Get color as user input"
+	},
+	"Input List": {
+		"scope": "javascript,typescript",
+		"prefix": "input",
+		"body": [
+			"inputList(${1:'input name'}, ${2:\"orange\"}, ${3:['orange', 'apple']});${0}",
+		],
+		"description": "Get color as user input"
+	},
+	"Input Plot Type": {
+		"scope": "javascript,typescript",
+		"prefix": "inputPlotType",
+		"body": [
+			"inputPlotType(${1:'input name'}, ${2:AvailablePlotType.Line});${0}"
+		],
+		"description": "Get color as user input"
+	},
+	"Plot Basic": {
+		"scope": "javascript,typescript",
+		"prefix": "plotbasic",
+		"body": [
+			"plot(${1:'plotname'}, ${2:series});${0}"
+		],
+		"description": "Plot a series of data in the chart"
+	},
+	"Plot With Style": {
+		"scope": "javascript,typescript",
+		"prefix": "plotwithstyle",
+		"body": [
+			"plot(${1:'plotname'}, ${2:series},  {  ${3:plotType : AvailablePlotType.Line}, ${4:lineWidth : inputLineWidth('Myplotline', 2)},  ${5:opacity : inputOpacity('MyOpacity', 0.3)},   ${6:strokeColor : inputColor('MyColor', '#fffff')} });${0}"
+		],
+		"description": "Plot a series of data in the chart"
+	},
+	"Plot All Options": {
+		"scope": "javascript,typescript",
+		"prefix": "plotalloptions",
+		"body": [
+			"plot(${1:'plotname'}, ${2:series},  {  ${3:plotType : AvailablePlotType.Histogram},   ${4:lineWidth : inputLineWidth('Myplotline', 2)}, ${5:opacity : inputOpacity('MyOpacity', 0.3)},  ${6:strokeColor : inputColor('MyColor', '#fffff')} }, { ${7:fixedRange : ${8:[0,100]}}, ${9:offset : 0}, ${10:useFixedRange : false}, ${11:useOwnScale: false}, ${12:track : true}, ${13:scaleRange : [0, 100]} });${0}"
+		],
+		"description": "Plot a series of data in the chart"
+	},
+	"meta epxort": {
+		"scope": "javascript,typescript",
+		"prefix": "metaexport",
+		"body": [
+			"var meta = {",
+				"\toverlay: ${1:true},",
+				"\tuseOwnScale: ${2:false},",
+				"\tscaleRange: ${3:[2, 0]},",
+				"\tfixedRange: ${4:[0, 0]},",
+				"\tuseFixedRange: ${5:false},",
+				"\tname: ${6:'Exponential Moving Average (EMA)'}",
+			"};",
+			"export { meta };$0"
+		],
+		"description": "Create exports for metadata information for the indicators"
+	}
+}

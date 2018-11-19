@@ -1,3 +1,14 @@
+declare interface MetaInfo {
+  internal? : boolean
+  type? : string,
+  overlay : boolean,
+  useOwnScale? : boolean,
+  scaleRange? : [number , number], 
+  fixedRange? : [number , number], 
+  useFixedRange? : boolean,
+  name: string
+}
+
 declare interface PlotValues {
   timestamp: number,
   price: number,

@@ -11,6 +11,7 @@
     "module": "es6",
     "target": "es6",
     "noImplicitAny": false,
+    "outDir": "dist",
     "preserveConstEnums": true,
     "removeComments": false,
     "sourceMap": false,
