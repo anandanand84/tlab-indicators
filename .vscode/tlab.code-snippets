@@ -90,7 +90,7 @@
 		"scope": "javascript,typescript",
 		"prefix": "plotwithstyle",
 		"body": [
-			"plot(${1:'plotname'}, ${2:series},  {  ${3:plotType : AvailablePlotType.Line}, ${4:lineWidth : inputLineWidth('Myplotline', 2)},  ${5:opacity : inputOpacity('MyOpacity', 0.3)},   ${6:strokeColor : inputColor('MyColor', '#fffff')} });${0}"
+			"plot('${1:plotname}', ${2:series},  {  ${3:plotType : AvailablePlotType.Line}, ${4:lineWidth : inputLineWidth('Line Width', 2)},  ${5:opacity : inputOpacity('MyOpacity', 0.3)},   ${6:strokeColor : inputColor('Color', '#fffff')} });${0}"
 		],
 		"description": "Plot a series of data in the chart"
 	},
@@ -98,7 +98,7 @@
 		"scope": "javascript,typescript",
 		"prefix": "plotalloptions",
 		"body": [
-			"plot(${1:'plotname'}, ${2:series},  {  ${3:plotType : AvailablePlotType.Histogram},   ${4:lineWidth : inputLineWidth('Myplotline', 2)}, ${5:opacity : inputOpacity('MyOpacity', 0.3)},  ${6:strokeColor : inputColor('MyColor', '#fffff')} }, { ${7:fixedRange : ${8:[0,100]}}, ${9:offset : 0}, ${10:useFixedRange : false}, ${11:useOwnScale: false}, ${12:track : true}, ${13:scaleRange : [0, 100]} });${0}"
+			"plot('${1:plotname}', ${2:series},  {  ${3:plotType : AvailablePlotType.Histogram},   ${4:lineWidth : inputLineWidth('Line Width', 2)}, ${5:opacity : inputOpacity('MyOpacity', 0.3)},  ${6:strokeColor : inputColor('Color', '#fffff')} }, { ${7:fixedRange : ${8:[0,100]}}, ${9:offset : 0}, ${10:useFixedRange : false}, ${11:useOwnScale: false}, ${12:track : true}, ${13:scaleRange : [0, 100]} });${0}"
 		],
 		"description": "Plot a series of data in the chart"
 	},
@@ -108,11 +108,11 @@
 		"body": [
 			"var meta = {",
 				"\toverlay: ${1:true},",
-				"\tuseOwnScale: ${2:false},",
-				"\tscaleRange: ${3:[2, 0]},",
-				"\tfixedRange: ${4:[0, 0]},",
-				"\tuseFixedRange: ${5:false},",
-				"\tname: ${6:'Exponential Moving Average (EMA)'}",
+				"\tname: '${2:Exponential Moving Average (EMA)}',",
+				"\tuseOwnScale: ${3:false},",
+				"\tscaleRange: ${4:[0, 0]},",
+				"\tfixedRange: ${5:[0, 0]},",
+				"\tuseFixedRange: ${6:false},",
 			"};",
 			"export { meta };$0"
 		],
