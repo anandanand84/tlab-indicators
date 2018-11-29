@@ -1,0 +1,41 @@
+let kPeriod = inputNumber('K', 3);
+let dPeriod = inputNumber('D', 3);
+let values = inputSource('RSI Source', 'close');
+let rsiPeriod = inputNumber('RSI Period', 14);
+let stochasticPeriod = inputNumber('Stochastic Period', 14);
+var inputStochasticRSI = { values, stochasticPeriod, kPeriod, dPeriod, rsiPeriod}
+var result = stochasticrsi(inputStochasticRSI);
+
+var rangestart = inputNumber('Range End', 80);
+var rangeend = inputNumber('Range Start', 20); 
+var bandOpacity = inputOpacity('Band Opacity', 0.1);
+var bandColor = inputColor('Band Color', 'pink');
+
+let k = [];
+let d = [];
+
+result.forEach((data)=> {
+    k.push(data.k);
+    d.push(data.d);
+});
+
+plot('k', k, { strokeColor : inputColor('K Color', 'blue')});
+plot('d', d, { strokeColor : inputColor('D Color', 'orange')});
+
+hfill('Range', rangestart, rangeend,  {
+    opacity     : bandOpacity,
+    lineWidth   : { value : 2},
+    fillColor   : bandColor,
+    strokeBorder: inputBoolean('Stroke Band', true),
+    strokeColor : bandColor
+})
+
+var meta = {
+    overlay: false,
+    name: 'Stochastic RSI (STOCHRSI)',
+    useOwnScale: false,
+    scaleRange: [0, 0],
+    fixedRange: [0, 120],
+    useFixedRange: false,
+};
+export { meta };

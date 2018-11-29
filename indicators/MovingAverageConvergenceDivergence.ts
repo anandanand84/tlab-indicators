@@ -10,7 +10,7 @@ var MACD = result.macd;
 
 var histogramColor = macd_histogram.map((val, index) => { 
     return val > 0 ? 
-           (val > macd_histogram[index + 1] ? '#4A9D4A' : '#4AF94A') : 
+           (val > macd_histogram[index + 1] ? '#4A9D4A' : '#4AF94A'): 
            (val > macd_histogram[index + 1] ? '#F94A4A' : '#9D4A4A')
 });
 
