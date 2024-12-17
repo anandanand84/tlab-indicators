@@ -4,7 +4,7 @@ plot('mom', mom({values, period}), { strokeColor : inputColor('Color', '#f5f5f5'
 
 var meta = {
     overlay: false,
-    name: 'Momentum',
+    name: 'Momentum (MOM)',
     useOwnScale: false,
     scaleRange: [0, 0],
     fixedRange: [0, 0],

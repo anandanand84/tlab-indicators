@@ -4,7 +4,7 @@ plot('Mass', mass({high, low, period}), { strokeColor : inputColor('Color', '#f5
 
 var meta = {
     overlay: false,
-    name: 'Mass Index',
+    name: 'Mass Index (MASS)',
     useOwnScale: false,
     scaleRange: [0, 0],
     fixedRange: [0, 0],

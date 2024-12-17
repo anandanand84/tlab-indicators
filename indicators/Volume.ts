@@ -10,7 +10,7 @@ if(showAverageVolume) {
 }
 var meta = {
     overlay: true,
-    name: 'Volume',
+    name: 'Volume (VOLUME)',
     useOwnScale: true,
     scaleRange: [0, 30],
     fixedRange: [0, 0],

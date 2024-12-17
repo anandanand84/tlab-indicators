@@ -3,7 +3,7 @@ plot('MarketFacilitationIndex', marketfi({high, low, volume}), { strokeColor : i
 
 var meta = {
     overlay: false,
-    name: 'Market Facilitation Index',
+    name: 'Market Facilitation Index (MFI)',
     useOwnScale: false,
     scaleRange: [0, 0],
     fixedRange: [0, 0],

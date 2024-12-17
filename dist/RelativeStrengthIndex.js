@@ -20,7 +20,7 @@ plot(`RSI`, rsiValues, {
 });
 var meta = {
     overlay: false,
-    name: 'Relative Strength Index',
+    name: 'Relative Strength Index (RSI)',
     useOwnScale: false,
     scaleRange: [0, 0],
     fixedRange: [-20, 120],

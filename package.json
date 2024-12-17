@@ -1,0 +1,21 @@
+{
+  "name": "tlab-indicators",
+  "version": "1.0.0",
+  "description": "Technical analysis indicators library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@babel/core": "^7.23.6",
+    "@babel/parser": "^7.23.6",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2"
+  },
+  "keywords": [
+    "technical-analysis",
+    "indicators",
+    "trading"
+  ],
+  "author": "",
+  "license": "ISC"
+}

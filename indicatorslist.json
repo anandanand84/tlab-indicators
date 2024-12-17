@@ -1,0 +1,1115 @@
+[
+  {
+    "meta": {
+      "overlay": false,
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false,
+      "name": "Absolute Price Oscillator (APO)"
+    },
+    "code": "var values = inputSource('Source', \"close\");\nvar short_period = inputNumber('Short Period', 10);\nvar long_period = inputNumber('Long Period', 20);\nvar apoResults = apo({\n  short_period,\n  long_period,\n  values\n});\nplot('apo', apoResults, {\n  plotType: AvailablePlotType.Line,\n  lineWidth: inputLineWidth('Line Width', 2),\n  strokeColor: inputColor('Color', '#ffcdd2')\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false,
+      "name": "Accumulation Distribution Line (AD)"
+    },
+    "code": "var {\n  high,\n  low,\n  close,\n  volume\n} = this.data;\nvar adResults = ad({\n  high,\n  low,\n  close,\n  volume\n});\nplot('ad', adResults, {\n  plotType: AvailablePlotType.Line,\n  lineWidth: inputLineWidth('Line Width', 2),\n  strokeColor: inputColor('Color', '#ffebee')\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false,
+      "name": "Chaikin Oscillator CO(ADOSC)"
+    },
+    "code": "var {\n  high,\n  low,\n  close,\n  volume\n} = this.data;\nvar short_period = inputNumber('Short Period', 2);\nvar long_period = inputNumber('Long Period', 5);\nvar adResults = adosc({\n  short_period,\n  long_period,\n  high,\n  low,\n  close,\n  volume\n});\nplot('adosc', adResults, {\n  plotType: AvailablePlotType.Line,\n  lineWidth: inputLineWidth('Line Width', 2),\n  strokeColor: inputColor('Color', '#ffcdd2')\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Annual Volatility (AVOL)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var values = inputSource('Source', 'close');\nvar period = inputNumber('Period', 10);\nvar results = volatility({\n  values,\n  period\n});\nplot(`volatility`, results, {\n  lineWidth: {\n    value: 1\n  },\n  strokeColor: inputColor('Color', '#448AFF'),\n  plotType: AvailablePlotType.Line,\n  opacity: 1\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Aroon (AROON)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        -10,
+        110
+      ],
+      "useFixedRange": true
+    },
+    "code": "var {\n  high,\n  low\n} = this.data;\nvar period = inputNumber('Period', 14);\nvar {\n  aroon_up,\n  aroon_down\n} = aroon({\n  period,\n  high,\n  low\n});\nplot('Arron Down', aroon_down, {\n  plotType: AvailablePlotType.Line,\n  lineWidth: inputLineWidth('Line Width', 2),\n  strokeColor: inputColor('Down Color', '#9D4A4A')\n});\nplot('Arron Up', aroon_up, {\n  plotType: AvailablePlotType.Line,\n  lineWidth: inputLineWidth('Line Width', 2),\n  strokeColor: inputColor('Up Color', '#4A9D4A')\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Aroon Oscillator (AROONOSC)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        -110,
+        110
+      ],
+      "useFixedRange": true
+    },
+    "code": "var {\n  high,\n  low\n} = this.data;\nvar period = inputNumber('Period', 14);\nvar results = aroonosc({\n  period,\n  high,\n  low\n});\nvar fillColor = results.map(val => {\n  return val > 0 ? inputColor('Up Color', '#4A9D4A') : inputColor('Down Color', '#9D4A4A');\n});\nfill('aroonosc', results, results.map(r => 0), {\n  fillColor,\n  lineWidth: inputLineWidth('LineWidth', 2),\n  strokeBorder: true\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "useOwnScale": false,
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false,
+      "name": "Average Directional Index (ADX)"
+    },
+    "code": "var {\n  high,\n  low,\n  close\n} = this.data;\nvar period = inputNumber('Period', 5);\nvar adx_results = adx({\n  period,\n  high,\n  low,\n  close\n});\nplot('adx', adx_results, {\n  plotType: AvailablePlotType.Line,\n  lineWidth: inputLineWidth('LineWidth', 2),\n  strokeColor: inputColor('Color', '#ef9a9a')\n});\n// if(inputBoolean('Plot DM', false)) {\n//     var { plus_dm, minus_dm } = dm({ high, low, period});\n//     var fillColor = plus_dm.map((pdm, index)=> {\n//         return pdm > minus_dm[index] ? inputColor('Plus DM Color ', '#4A9D4A') : inputColor('Minus DM Color ', '#9D4A4A');\n//     })\n//     fill('dm', plus_dm, minus_dm, { fillColor , opacity : inputOpacity('Band Opacity', 0.3), strokeBorder : false })\n// }"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "useOwnScale": false,
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false,
+      "name": "Average Directional Movement Rating (ADXR)"
+    },
+    "code": "var {\n  high,\n  low,\n  close\n} = this.data;\nvar period = inputNumber('Period', 5);\nvar adxr_results = adxr({\n  period,\n  high,\n  low,\n  close\n});\nplot('adx', adxr_results, {\n  plotType: AvailablePlotType.Line,\n  lineWidth: inputLineWidth('LineWidth', 2),\n  strokeColor: inputColor('Color', '#ef9a9a')\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Average True Range (ATR)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "let {\n  high,\n  low,\n  close\n} = this.data;\nlet period = inputNumber('Period', 14);\nlet strokeColor = inputColor('Color', '#64B5F6');\nlet atrValues = atr({\n  high,\n  low,\n  close,\n  period\n});\nplot('ATR', atrValues, {\n  strokeColor\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Awesome Oscillator (AO)",
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var {\n  high,\n  low\n} = this.data;\nvar gainingAbove = inputColor('Gainging Above Color', \"#4A9D4A\");\nvar losingAbove = inputColor('Losing Above Color', \"#4AF94A\");\nvar gainingBelow = inputColor('Gainging Below Color', \"#F94A4A\");\nvar losingBelow = inputColor('Losing Below Color', \"#9D4A4A\");\nvar aoResults = ao({\n  high,\n  low\n});\nvar aoColor = aoResults.map((val, index) => {\n  return val > 0 ? val > aoResults[index + 1] ? gainingAbove : losingAbove : val > aoResults[index + 1] ? gainingBelow : losingBelow;\n});\nplot('Histogram', aoResults, {\n  strokeColor: aoColor,\n  plotType: AvailablePlotType.Histogram,\n  opacity: inputOpacity('Histogram Opacity', 1)\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Balance of Power (BOP)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var {\n  open,\n  high,\n  low,\n  close\n} = this.data;\nvar results = bop({\n  open,\n  high,\n  low,\n  close\n});\nplot('bop', results, {\n  strokeColor: inputColor('Color', '#e57373')\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Bollinger Bands (BB)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var input = {\n  period: inputNumber('Period', 14),\n  values: inputSource('Source', 'close'),\n  stddev: inputNumber('Standard Deviation', 2)\n};\nlet {\n  bbands_lower,\n  bbands_middle,\n  bbands_upper\n} = bbands(input);\nplot('ma', bbands_middle);\nlet fillStyle = {\n  opacity: inputOpacity('Band Opacity', 0.1),\n  lineWidth: inputLineWidth('Line Width', 1),\n  fillColor: inputColor('Fill Color', '#fff9c4'),\n  strokeBorder: inputBoolean('Stroke Border', true),\n  strokeColor: inputColor('Stroke Color', 'red')\n};\nfill('bands', bbands_upper, bbands_lower, fillStyle);"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Chaikins Volatility Index (CVI)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var {\n  high,\n  low\n} = this.data;\nvar period = inputNumber('Period', 14);\nvar color = inputColor('Color', '#f44336');\nvar results = cvi({\n  high,\n  low,\n  period\n});\nplot('cvi', results, {\n  strokeColor: color,\n  lineWidth: inputLineWidth('LineWidth', 2)\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Chande Momentum Oscillator (CMO)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var values = inputSource('Source', \"close\");\nvar period = inputNumber('Period', 14);\nvar color = inputColor('Color', '#f44336');\nvar results = cmo({\n  values,\n  period\n});\nplot('cmo', results, {\n  strokeColor: color,\n  lineWidth: inputLineWidth('LineWidth', 2)\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Commodity Channel Index (CCI)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var {\n  high,\n  low,\n  close\n} = this.data;\nvar period = inputNumber('Period', 14);\nvar results = cci({\n  high,\n  low,\n  close,\n  period\n});\nplot('CCI', results, {\n  lineWidth: inputLineWidth('Line Width', 2),\n  strokeColor: inputColor('Color', '#ef5350')\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false,
+      "name": "Detrended Price Oscillator (DPO)"
+    },
+    "code": "var values = inputSource('Source', \"close\");\nvar period = inputNumber('Period', 21);\nvar dpoResults = dpo({\n  period,\n  values\n});\nplot('dpo', dpoResults, {\n  plotType: AvailablePlotType.Line,\n  lineWidth: inputLineWidth('Line Width', 2),\n  strokeColor: inputColor('Color', '#e1bee7')\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Double EMA (DEMA)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var mainput = inputSource('Source', 'close');\nvar emaperiod = inputNumber('Period', 9);\nvar emacolor = inputColor('Color', 'purple');\nvar lineWidth = inputLineWidth('Line Width', 2);\nvar emavalues = dema({\n  period: emaperiod,\n  values: mainput\n});\nplot('EMA', emavalues, {\n  strokeColor: emacolor,\n  lineWidth: lineWidth\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false,
+      "name": "Ease of movement (EOM)"
+    },
+    "code": "var {\n  high,\n  low,\n  volume\n} = this.data;\nvar emvResults = emv({\n  high,\n  low,\n  volume\n});\nplot('emv', emvResults, {\n  plotType: AvailablePlotType.Line,\n  lineWidth: inputLineWidth('Line Width', 2),\n  strokeColor: inputColor('Color', '#ffebee')\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Exponential Moving Average (EMA)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var mainput = inputSource('Source', 'close');\nvar emaperiod = inputNumber('Period', 9);\nvar emacolor = inputColor('Color', 'purple');\nvar lineWidth = inputLineWidth('Line Width', 2);\nvar emavalues = ema({\n  period: emaperiod,\n  values: mainput\n});\nplot('EMA', emavalues, {\n  strokeColor: emacolor,\n  lineWidth: lineWidth\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "useOwnScale": false,
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false,
+      "name": "Fisher Transform"
+    },
+    "code": "var {\n  high,\n  low\n} = this.data;\nvar period = inputNumber('Period', 9);\nvar result = fisher({\n  period,\n  high,\n  low\n});\nplot('fisher', result.fisher, {\n  plotType: AvailablePlotType.Line,\n  lineWidth: inputLineWidth('Line Width', 2),\n  strokeColor: inputColor('Fisher Color', '#ef9a9a')\n});\nplot('fisher_signal', result.fisher_signal, {\n  plotType: AvailablePlotType.Line,\n  lineWidth: inputLineWidth('Signal Line Width', 2),\n  strokeColor: inputColor('Signal Color', 'green')\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Fishnet Average (FA)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "let {\n  close\n} = this.data;\nlet fishNetPeriod = inputString('Fishnet', '5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200');\nvar periods = fishNetPeriod.split(',');\nperiods.forEach(period => {\n  plot('period', sma({\n    values: close,\n    period: parseInt(period)\n  }), {\n    strokeColor: inputColor('Color', '#C58EFF')\n  });\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false,
+      "name": "Forecast Oscillator (FOSC)"
+    },
+    "code": "var values = inputSource('Source', \"close\");\nvar period = inputNumber('Period', 14);\nvar foscResults = fosc({\n  period,\n  values\n});\nvar strokeColor = foscResults.map((fosc, index) => {\n  return fosc > 0 ? inputColor('Up Color ', '#4A9D4A') : inputColor('Down Color ', '#9D4A4A');\n});\nplot('fosc', foscResults, {\n  plotType: AvailablePlotType.Line,\n  lineWidth: inputLineWidth('Line Width', 2),\n  strokeColor: strokeColor\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Hull Moving Average (HMA)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var mainput = inputSource('Source', 'close');\nvar hmaperiod = inputNumber('Period', 9);\nvar hmacolor = inputColor('Color', 'purple');\nvar lineWidth = inputLineWidth('Line Width', 2);\nvar hmavalues = hma({\n  period: hmaperiod,\n  values: mainput\n});\nplot('hma', hmavalues, {\n  strokeColor: hmacolor,\n  lineWidth: lineWidth\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Ichimoku Cloud (IC)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var {\n  high,\n  low,\n  close\n} = this.data;\nvar conversionPeriod = inputNumber('Conversion Period', 9);\nvar basePeriod = inputNumber('Base Period', 26);\nvar spanPeriod = inputNumber('Span Period', 52);\nvar displacement = inputNumber('Displacement', 26);\nvar chickuSpanColor = inputColor('Chiku Span', 'grey');\nvar conversionLineColor = inputColor('Conversion Line', 'blue');\nvar baseLineColor = inputColor('Base Line', 'red');\nvar spanAColor = inputColor('SPAN A', this.styles.upColor);\nvar spanBColor = inputColor('SPAN B', this.styles.downColor);\nvar ichimokuResults = ichimokucloud({\n  conversionPeriod,\n  basePeriod,\n  spanPeriod,\n  displacement,\n  high,\n  low\n});\nvar conversions = [];\nvar bases = [];\nvar spanAs = [];\nvar spanBs = [];\nichimokuResults.forEach((result, index) => {\n  conversions.push(result.conversion);\n  bases.push(result.base);\n  spanAs.push(result.spanA);\n  spanBs.push(result.spanB);\n});\nplot('ChikuSpan', close, {\n  strokeColor: chickuSpanColor\n}, {\n  offset: -displacement\n});\nplot('ConversionLine', conversions, {\n  strokeColor: conversionLineColor\n});\nplot('BaseLine', bases, {\n  strokeColor: baseLineColor\n});\nplot('Leading Span A', spanAs, {\n  strokeColor: spanAColor\n}, {\n  offset: displacement\n});\nplot('Leading Span B', spanBs, {\n  strokeColor: spanBColor\n}, {\n  offset: displacement\n});\nvar cloudFillColor = spanAs.map((mac, index) => {\n  return spanAs[index] > spanBs[index] ? this.styles.upColor : this.styles.downColor;\n});\nfill('Cloud', spanAs, spanBs, {\n  fillColor: cloudFillColor,\n  opacity: 0.2\n}, {\n  offset: displacement\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Kaufman Adaptive Moving Avg (KAMA)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var mainput = inputSource('Source', 'close');\nvar kamaperiod = inputNumber('Period', 21);\nvar kamacolor = inputColor('Color', 'purple');\nvar lineWidth = inputLineWidth('Line Width', 2);\nvar kamavalues = kama({\n  period: kamaperiod,\n  values: mainput\n});\nplot('kama', kamavalues, {\n  strokeColor: kamacolor,\n  lineWidth: lineWidth\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Keltner Channels (KC)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var {\n  high,\n  low,\n  close\n} = this.data;\nvar useSMA = inputBoolean('Use SMA', false);\nvar maPeriod = inputNumber('MA Period', 20);\nvar atrPeriod = inputNumber('ATR Period', 10);\nvar multiplier = inputNumber('ATR Multiplier', 1);\nvar color = inputColor('Color ', '#42a5f5');\nvar opacity = inputOpacity('Opacity', 0.2);\nvar kcOutput = keltnerchannels({\n  high,\n  low,\n  close,\n  useSMA,\n  maPeriod,\n  atrPeriod,\n  multiplier\n});\nvar middle = [];\nvar upper = [];\nvar lower = [];\nkcOutput.forEach(data => {\n  middle.push(data.middle);\n  upper.push(data.upper);\n  lower.push(data.lower);\n});\nplot('Base', middle, {\n  strokeColor: color\n});\nplot('Upper', upper, {\n  strokeColor: color\n});\nplot('Lower', lower, {\n  strokeColor: color\n});\nfill('Channel', upper, lower, {\n  fillColor: color,\n  opacity: opacity\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false,
+      "name": "Klinger Volume Oscillator (KVO)"
+    },
+    "code": "var {\n  high,\n  low,\n  close,\n  volume\n} = this.data;\nvar short_period = inputNumber('Short Period', 34);\nvar long_period = inputNumber('Long Period', 55);\nvar signalPeriod = inputNumber('Signal Period', 13);\nvar kvoResults = kvo({\n  short_period,\n  long_period,\n  high,\n  low,\n  close,\n  volume\n});\nvar signal = ema({\n  values: kvoResults,\n  period: signalPeriod\n});\nplot('kvo', kvoResults, {\n  plotType: AvailablePlotType.Line,\n  lineWidth: inputLineWidth('Line Width', 2),\n  strokeColor: inputColor('Color', '#ffebee')\n});\nplot('signal', signal, {\n  plotType: AvailablePlotType.Line,\n  lineWidth: inputLineWidth('Line Width', 2),\n  strokeColor: inputColor('Signal Color', 'green')\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Linear Regression (LINREG)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var mainput = inputSource('Source', 'close');\nvar linregperiod = inputNumber('Period', 50);\nvar linregcolor = inputColor('Color', '#e57373');\nvar lineWidth = inputLineWidth('Line Width', 2);\nvar linregvalues = linreg({\n  period: linregperiod,\n  values: mainput\n});\nplot('linreg', linregvalues, {\n  strokeColor: linregcolor,\n  lineWidth: lineWidth\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Market Facilitation Index (MFI)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var {\n  high,\n  low,\n  volume\n} = this.data;\nplot('MarketFacilitationIndex', marketfi({\n  high,\n  low,\n  volume\n}), {\n  strokeColor: inputColor('Color', 'green'),\n  plotType: inputPlotType('Plot Type', AvailablePlotType.Histogram)\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Mass Index (MASS)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var {\n  high,\n  low\n} = this.data;\nvar period = inputNumber('Period', 10);\nplot('Mass', mass({\n  high,\n  low,\n  period\n}), {\n  strokeColor: inputColor('Color', '#f5f5f5'),\n  lineWidth: inputLineWidth('LineWidth', 2)\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Median Price (MEDPRICE)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var values = inputSource('Value 1', 'high');\nvar values1 = inputSource('Value 2', 'low');\nvar med = medprice({\n  high: values,\n  low: values1\n});\nplot('med', med, {\n  plotType: AvailablePlotType.Line,\n  lineWidth: inputLineWidth('Line Width', 2),\n  strokeColor: inputColor('Color', '#f44336')\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Momentum (MOM)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var values = inputSource(\"Source\", \"close\");\n;\nvar period = inputNumber('Period', 10);\nplot('mom', mom({\n  values,\n  period\n}), {\n  strokeColor: inputColor('Color', '#f5f5f5'),\n  lineWidth: inputLineWidth('LineWidth', 2)\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Money Flow Index (MFI)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var period = inputNumber('MFI Period', 14);\nvar overBought = inputNumber('Over Bought', 80);\nvar overSold = inputNumber('Over Sold', 20);\nvar bandOpacity = inputOpacity('Band Opacity', 0.1);\nvar bandColor = inputColor('Band Color');\nhfill('Range', overSold, overBought, {\n  opacity: bandOpacity,\n  lineWidth: {\n    value: 2\n  },\n  fillColor: bandColor,\n  strokeBorder: inputBoolean('Stroke Band', true),\n  strokeColor: bandColor\n});\nvar {\n  high,\n  low,\n  close,\n  volume\n} = this.data;\nvar mfiValues = mfi({\n  high,\n  low,\n  close,\n  volume,\n  period\n});\nplot(`MFI`, mfiValues, {\n  lineWidth: {\n    value: 1\n  },\n  strokeColor: inputColor('MFI Color'),\n  plotType: AvailablePlotType.Line,\n  opacity: 1\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Moving Average Convergence Divergence (MACD)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var plotSignalAndMacd = inputBoolean('Plot Signal and MACD', true);\nvar result = macd({\n  values: inputSource('Source', 'close'),\n  short_period: inputNumber('Fast Period', 10),\n  long_period: inputNumber('Slow Period', 26),\n  signal_period: inputNumber('Signal Period', 9)\n});\nvar {\n  macd_histogram,\n  macd_signal\n} = result;\nvar MACD = result.macd;\nvar histogramColor = macd_histogram.map((val, index) => {\n  return val > 0 ? val > macd_histogram[index + 1] ? '#4A9D4A' : '#4AF94A' : val > macd_histogram[index + 1] ? '#F94A4A' : '#9D4A4A';\n});\nplot('Histogram', macd_histogram, {\n  strokeColor: histogramColor,\n  plotType: AvailablePlotType.Histogram,\n  opacity: inputOpacity('Histogram Opacity', 1)\n});\nif (plotSignalAndMacd) {\n  plot('MACD', MACD, {\n    lineWidth: inputLineWidth('Macd Size', 2),\n    strokeColor: inputColor('MACD Color', '#FA6B49'),\n    plotType: AvailablePlotType.Line,\n    opacity: 1\n  });\n  plot('Signal', macd_signal, {\n    lineWidth: inputLineWidth('Signal Size', 1),\n    strokeColor: inputColor('Signal Color', '#569553'),\n    plotType: AvailablePlotType.Line,\n    opacity: 1\n  });\n}"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Negative Volume Index (NVI)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var {\n  close,\n  volume\n} = this.data;\nplot('nvi', nvi({\n  close,\n  volume\n}), {\n  strokeColor: inputColor('Color', 'green'),\n  plotType: inputPlotType('Plot Type', AvailablePlotType.Histogram)\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Onbalance Volume (OBV)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var {\n  close,\n  volume\n} = this.data;\nplot('obv', obv({\n  close,\n  volume\n}), {\n  strokeColor: inputColor('Color', 'green'),\n  plotType: inputPlotType('Plot Type', AvailablePlotType.Line)\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "internal": true,
+      "type": "OrderFlow",
+      "name": "OrderFlow (ORDERFLOW)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var code = \"Code not available for Orderflow\";"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Parabolic SAR (PSAR)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var high = this.data.high;\nvar low = this.data.high;\nvar acceleration_factor_step = inputNumber('AF Step', 0.02);\nvar acceleration_factor_maximum = inputNumber('AF Max', 0.2);\nvar psar_values = psar({\n  high,\n  low,\n  acceleration_factor_maximum,\n  acceleration_factor_step\n});\nplot('psar_values', psar_values, {\n  plotType: AvailablePlotType.Circle,\n  lineWidth: inputLineWidth('Line Width', 2),\n  strokeColor: inputColor('Color', '#f44336')\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false,
+      "name": "Percentage Price Oscillator (PPO)"
+    },
+    "code": "var values = inputSource('Source', \"close\");\nvar short_period = inputNumber('Short Period', 10);\nvar long_period = inputNumber('Long Period', 20);\nvar ppoResults = ppo({\n  short_period,\n  long_period,\n  values\n});\nplot('ppo', ppoResults, {\n  plotType: AvailablePlotType.Line,\n  lineWidth: inputLineWidth('Line Width', 2),\n  strokeColor: inputColor('Color', '#ffcdd2')\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Positive Volume Index (PVI)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var {\n  close,\n  volume\n} = this.data;\nplot('pvi', pvi({\n  close,\n  volume\n}), {\n  strokeColor: inputColor('Color', 'green'),\n  plotType: inputPlotType('Plot Type', AvailablePlotType.Histogram)\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Qstick (QSTICK)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var {\n  open,\n  close\n} = this.data;\nvar period = inputNumber('Period', 8);\nvar emaPeriod = inputNumber('EMA Period', 5);\nvar color = inputColor('Color', '#f44336');\nvar results = qstick({\n  open,\n  close,\n  period\n});\nplot('qstick', results, {\n  strokeColor: color,\n  plotType: AvailablePlotType.Histogram,\n  lineWidth: inputLineWidth('LineWidth', 2)\n});\nplot('ema', ema({\n  values: results,\n  period: emaPeriod\n}), {\n  strokeColor: inputColor('EMA Color'),\n  lineWidth: inputLineWidth('EMA Line Width', 1)\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Rate of Change Ratio(ROCR)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var values = inputSource('Source', 'close');\nvar period = inputNumber('Period', 14);\nvar rocrValues = rocr({\n  values,\n  period\n});\nplot(`rocr`, rocrValues, {\n  lineWidth: {\n    value: 1\n  },\n  strokeColor: inputColor('Color'),\n  plotType: AvailablePlotType.Line,\n  opacity: 1\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Rate of Change (ROC)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var values = inputSource('ROC Source', 'close');\nvar period = inputNumber('ROC Period', 14);\nvar rocValues = roc({\n  values,\n  period\n});\nplot(`roc`, rocValues, {\n  lineWidth: {\n    value: 1\n  },\n  strokeColor: inputColor('ROC Color'),\n  plotType: AvailablePlotType.Line,\n  opacity: 1\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Rate of Change Ratio(ROCR)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var values = inputSource('Source', 'close');\nvar period = inputNumber('Period', 14);\nvar rocrValues = rocr({\n  values,\n  period\n});\nplot(`rocr`, rocrValues, {\n  lineWidth: {\n    value: 1\n  },\n  strokeColor: inputColor('Color'),\n  plotType: AvailablePlotType.Line,\n  opacity: 1\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Relative Strength Index (RSI)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        -20,
+        120
+      ],
+      "useFixedRange": false
+    },
+    "code": "var values = inputSource('RSI Source', 'close');\nvar period = inputNumber('RSI Period', 14);\nvar overBought = inputNumber('Over Bought', 70);\nvar overSold = inputNumber('Over Sold', 30);\nvar bandOpacity = inputOpacity('Band Opacity', 0.1);\nvar bandColor = inputColor('Band Color', 'pink');\nhfill('Range', overSold, overBought, {\n  opacity: bandOpacity,\n  lineWidth: {\n    value: 2\n  },\n  fillColor: bandColor,\n  strokeBorder: inputBoolean('Stroke Band', true),\n  strokeColor: bandColor\n});\nvar rsiValues = rsi({\n  values,\n  period\n});\nplot(`RSI`, rsiValues, {\n  lineWidth: {\n    value: 1\n  },\n  strokeColor: inputColor('RSI Color'),\n  plotType: AvailablePlotType.Line,\n  opacity: 1\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Simple Moving Average (SMA)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var mainput = inputSource('Source', 'close');\nvar smaperiod = inputNumber('Period', 50);\nvar smacolor = inputColor('Color', 'purple');\nvar lineWidth = inputLineWidth('Line Width', 2);\nvar smavalues = sma({\n  period: smaperiod,\n  values: mainput\n});\nplot('SMA', smavalues, {\n  strokeColor: smacolor,\n  lineWidth: lineWidth\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Stochastic Oscillator (STOCH)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "let {\n  high,\n  low,\n  close\n} = this.data;\nlet kstrokeColor = inputColor('%k color', '#64B5F6');\nlet dstrokeColor = inputColor('%d color', '#9575CD');\nlet kslow = inputNumber('%K slow Period', 3);\nlet k = inputNumber('%K Period', 14);\nlet d = inputNumber('%d Period', 3);\nlet stochasticValues = stoch({\n  high,\n  low,\n  close,\n  \"%k_slowing_period\": kslow,\n  \"%k_period\": k,\n  \"%d_period\": d\n});\nplot('stoch %k', stochasticValues.stoch_k, {\n  strokeColor: kstrokeColor\n});\nplot('stoch %d', stochasticValues.stoch_d, {\n  strokeColor: dstrokeColor\n});\nvar overBought = inputNumber('Upper Band', 80);\nvar overSold = inputNumber('Lower Band', 20);\nvar bandColor = inputColor('Band Color', 'pink');\nhfill('Range', overSold, overBought, {\n  opacity: 0.2,\n  lineWidth: {\n    value: 2\n  },\n  fillColor: bandColor,\n  strokeBorder: inputBoolean('Stroke Band', true),\n  strokeColor: bandColor\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Stochastic RSI (STOCHRSI)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        120
+      ],
+      "useFixedRange": false
+    },
+    "code": "let kPeriod = inputNumber('K', 3);\nlet dPeriod = inputNumber('D', 3);\nlet values = inputSource('RSI Source', 'close');\nlet rsiPeriod = inputNumber('RSI Period', 14);\nlet stochasticPeriod = inputNumber('Stochastic Period', 14);\nvar inputStochasticRSI = {\n  values,\n  stochasticPeriod,\n  kPeriod,\n  dPeriod,\n  rsiPeriod\n};\nvar result = stochasticrsi(inputStochasticRSI);\nvar rangestart = inputNumber('Range End', 80);\nvar rangeend = inputNumber('Range Start', 20);\nvar bandOpacity = inputOpacity('Band Opacity', 0.1);\nvar bandColor = inputColor('Band Color', 'pink');\nlet k = [];\nlet d = [];\nresult.forEach(data => {\n  k.push(data.k);\n  d.push(data.d);\n});\nplot('k', k, {\n  strokeColor: inputColor('K Color', 'blue')\n});\nplot('d', d, {\n  strokeColor: inputColor('D Color', 'orange')\n});\nhfill('Range', rangestart, rangeend, {\n  opacity: bandOpacity,\n  lineWidth: {\n    value: 2\n  },\n  fillColor: bandColor,\n  strokeBorder: inputBoolean('Stroke Band', true),\n  strokeColor: bandColor\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Triple EMA (TEMA)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var emaList = [8, 21, 200];\nvar mainput = inputSource('Source', 'close');\nvar defaultColors = ['rgb(76, 175, 80)', 'rgb(41, 98, 255)', 'rgb(255, 235, 59)'];\nvar defaultWidth = [1, 1.5, 2];\nemaList.forEach((period, index) => {\n  let emaperiod = inputNumber('EMA Period ' + index, period);\n  let emacolor = inputColor('EMA Color ' + period, defaultColors[index]);\n  let lineWidth = inputLineWidth('Line Width ' + period, defaultWidth[index]);\n  let smavalues = ema({\n    period: emaperiod,\n    values: mainput\n  });\n  plot('EMA ' + period, smavalues, {\n    strokeColor: emacolor,\n    lineWidth: lineWidth\n  });\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "TRIX (TRIX)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        -20,
+        120
+      ],
+      "useFixedRange": false
+    },
+    "code": "var values = inputSource('Source', 'close');\nvar period = inputNumber('Period', 18);\nvar results = trix({\n  values,\n  period\n});\nplot(`trix`, results, {\n  lineWidth: {\n    value: 1\n  },\n  strokeColor: inputColor('Trix Color', '#5C6BC0'),\n  plotType: AvailablePlotType.Line,\n  opacity: 1\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Time Series Forecast (TSF)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var mainput = inputSource('Source', 'close');\nvar timeseriesperiod = inputNumber('Period', 50);\nvar timeseriescolor = inputColor('Color', 'purple');\nvar lineWidth = inputLineWidth('Line Width', 2);\nvar timeseriesvalues = tsf({\n  period: timeseriesperiod,\n  values: mainput\n});\nplot('timeseries', timeseriesvalues, {\n  strokeColor: timeseriescolor,\n  lineWidth: lineWidth\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Triangular Moving Average (TRIMA)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var mainput = inputSource('Source', 'close');\nvar trimaperiod = inputNumber('Period', 50);\nvar trimacolor = inputColor('Color', 'purple');\nvar lineWidth = inputLineWidth('Line Width', 2);\nvar trimavalues = trima({\n  period: trimaperiod,\n  values: mainput\n});\nplot('trima', trimavalues, {\n  strokeColor: trimacolor,\n  lineWidth: lineWidth\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "True Range (TR)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var {\n  high,\n  low,\n  close\n} = this.data;\nplot('tr', tr({\n  high,\n  low,\n  close\n}), {\n  strokeColor: inputColor('Color', '#42A5F5'),\n  plotType: inputPlotType('Plot Type', AvailablePlotType.Line)\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Ultimate Oscillator (ULTOSC)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "let {\n  high,\n  low,\n  close\n} = this.data;\nlet color = inputColor('Color', '#5C6BC0');\nlet short_period = inputNumber('Short Period', 7);\nlet medium_period = inputNumber('Medium Period', 14);\nlet long_period = inputNumber('Long Period', 28);\nlet results = ultosc({\n  high,\n  low,\n  close,\n  short_period,\n  long_period,\n  medium_period\n});\nplot('utlosc', results, {\n  strokeColor: color\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Volume Weighted Average Price (VWAP)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "let lineWidth = inputLineWidth('Line Width', 2);\nlet strokeColor = inputColor('Color', '#e57373');\nlet {\n  open,\n  high,\n  low,\n  close,\n  volume\n} = this.data;\nlet plotvalues = vwap({\n  high,\n  low,\n  close,\n  volume\n});\nplot('vwap', plotvalues, {\n  lineWidth,\n  strokeColor\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "Vertical Horizontal Filter (VHF)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var values = inputSource('VHF Source', 'close');\nvar period = inputNumber('VHF Period', 28);\nvar vhfValues = vhf({\n  values,\n  period\n});\nplot(`vhf`, vhfValues, {\n  lineWidth: {\n    value: 1\n  },\n  strokeColor: inputColor('VHF Color', '#448AFF'),\n  plotType: AvailablePlotType.Line,\n  opacity: 1\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Variable Index Dynamic Average (VIDYA)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var mainput = inputSource('Source', 'close');\nvar short_period = inputNumber('Short Period', 2);\nvar long_period = inputNumber('Long Period', 5);\nvar alpha = inputNumber('Alpha', 0.2);\nvar vidyacolor = inputColor('Color', 'purple');\nvar lineWidth = inputLineWidth('Line Width', 2);\nvar vidyavalues = vidya({\n  short_period,\n  long_period,\n  alpha: alpha,\n  values: mainput\n});\nplot('vidya', vidyavalues, {\n  strokeColor: vidyacolor,\n  lineWidth: lineWidth\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Volume (VOLUME)",
+      "useOwnScale": true,
+      "scaleRange": [
+        0,
+        30
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var showAverageVolume = inputBoolean('Show Average Volume', true);\nvar volumeAveragePeriod = inputNumber('Average Period', 20);\nvar upColor = inputColor('Up Color', HelperUtil.readCssVar(document.body, '--theme-up-color'));\nvar downColor = inputColor('Down Color', HelperUtil.readCssVar(document.body, '--theme-down-color'));\nlet {\n  open,\n  close,\n  volume\n} = this.data;\nvar strokeColor = Array.from(volume).map((_, index) => {\n  return open[index] > close[index] ? downColor : upColor;\n});\nplot('Volume ', volume, {\n  plotType: AvailablePlotType.Histogram,\n  strokeColor,\n  opacity: 0.3\n});\nif (showAverageVolume) {\n  plot('Volume SMA', sma({\n    values: volume,\n    period: volumeAveragePeriod\n  }), {\n    plotType: AvailablePlotType.Area,\n    opacity: .1\n  });\n}"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false,
+      "name": "Volume Oscillator (VO)"
+    },
+    "code": "var {\n  volume\n} = this.data;\nvar short_period = inputNumber('Short Period', 5);\nvar long_period = inputNumber('Long Period', 10);\nvar voscResults = vosc({\n  short_period,\n  long_period,\n  volume\n});\nplot('vosc', voscResults, {\n  plotType: AvailablePlotType.Line,\n  lineWidth: inputLineWidth('Line Width', 2),\n  strokeColor: inputColor('Color', '#ffcdd2')\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "internal": true,
+      "type": "VolumeProfileIndicator",
+      "name": "Volume Profile (VP)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var code = \"Code not available for Orderflow\";"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Volume Weighted Moving Average (VWMA)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var mainput = inputSource('Source', 'close');\nvar vwmaperiod = inputNumber('Period', 50);\nvar vwmacolor = inputColor('Color', 'purple');\nvar lineWidth = inputLineWidth('Line Width', 2);\nvar vwmavalues = vwma({\n  period: vwmaperiod,\n  volume: this.data.volume,\n  close: mainput\n});\nplot('vwma', vwmavalues, {\n  strokeColor: vwmacolor,\n  lineWidth: lineWidth\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Weighted Moving Average (WMA)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var mainput = inputSource('Source', 'close');\nvar wmaperiod = inputNumber('Period', 50);\nvar wmacolor = inputColor('Color', 'purple');\nvar lineWidth = inputLineWidth('Line Width', 2);\nvar wmavalues = wma({\n  period: wmaperiod,\n  values: mainput\n});\nplot('wma', wmavalues, {\n  strokeColor: wmacolor,\n  lineWidth: lineWidth\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Wilders Smoothing (WILDERS)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var mainput = inputSource('Source', 'close');\nvar wildersperiod = inputNumber('Period', 50);\nvar wilderscolor = inputColor('Color', 'purple');\nvar lineWidth = inputLineWidth('Line Width', 2);\nvar wildersvalues = wilders({\n  period: wildersperiod,\n  values: mainput\n});\nplot('wilders', wildersvalues, {\n  strokeColor: wilderscolor,\n  lineWidth: lineWidth\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "William PercentR (WILLR)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var {\n  high,\n  low,\n  close\n} = this.data;\nvar period = inputNumber('Period', 14);\n;\nplot('willr', willr({\n  high,\n  low,\n  close,\n  period\n}), {\n  strokeColor: inputColor('Color', '#42A5F5'),\n  plotType: inputPlotType('Plot Type', AvailablePlotType.Line)\n});"
+  },
+  {
+    "meta": {
+      "overlay": false,
+      "name": "William Accumulation Distribution (WAD)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var {\n  high,\n  low,\n  close\n} = this.data;\nplot('wad', wad({\n  high,\n  low,\n  close\n}), {\n  strokeColor: inputColor('Color', '#42A5F5'),\n  plotType: inputPlotType('Plot Type', AvailablePlotType.Line)\n});"
+  },
+  {
+    "meta": {
+      "overlay": true,
+      "name": "Zero Lag EMA (ZLEMA)",
+      "useOwnScale": false,
+      "scaleRange": [
+        0,
+        0
+      ],
+      "fixedRange": [
+        0,
+        0
+      ],
+      "useFixedRange": false
+    },
+    "code": "var mainput = inputSource('Source', 'close');\nvar zlemaperiod = inputNumber('Period', 50);\nvar zlemacolor = inputColor('Color', 'purple');\nvar lineWidth = inputLineWidth('Line Width', 2);\nvar zlemavalues = zlema({\n  period: zlemaperiod,\n  values: mainput\n});\nplot('zlema', zlemavalues, {\n  strokeColor: zlemacolor,\n  lineWidth: lineWidth\n});"
+  }
+]

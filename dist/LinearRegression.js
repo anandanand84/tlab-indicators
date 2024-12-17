@@ -6,7 +6,7 @@ var linregvalues = linreg({ period: linregperiod, values: mainput });
 plot('linreg', linregvalues, { strokeColor: linregcolor, lineWidth: lineWidth });
 var meta = {
     overlay: true,
-    name: 'Linear Regression (linreg)',
+    name: 'Linear Regression (LINREG)',
     useOwnScale: false,
     scaleRange: [0, 0],
     fixedRange: [0, 0],

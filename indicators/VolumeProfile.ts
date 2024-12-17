@@ -4,7 +4,7 @@ var meta = {
     overlay: false,
     internal : true,
     type : 'VolumeProfileIndicator',
-    name: 'Volume Profile',
+    name: 'Volume Profile (VP)',
     useOwnScale: false,
     scaleRange: [0, 0],
     fixedRange: [0, 0],

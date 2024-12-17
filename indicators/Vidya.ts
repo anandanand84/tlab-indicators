@@ -8,7 +8,7 @@ var vidyavalues = vidya({ short_period, long_period, alpha : alpha, values: main
 plot('vidya', vidyavalues, { strokeColor : vidyacolor, lineWidth : lineWidth });
 var meta = {
     overlay: true,
-    name: 'Variable Index Dynamic Average (vidya)',
+    name: 'Variable Index Dynamic Average (VIDYA)',
     useOwnScale: false,
     scaleRange: [0, 0],
     fixedRange: [0, 0],

@@ -4,7 +4,7 @@ var meta = {
     overlay: false,
     internal : true,
     type : 'OrderFlow',
-    name: 'OrderFlow',
+    name: 'OrderFlow (ORDERFLOW)',
     useOwnScale: false,
     scaleRange: [0, 0],
     fixedRange: [0, 0],

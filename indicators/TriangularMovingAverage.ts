@@ -6,7 +6,7 @@ var trimavalues = trima({ period: trimaperiod, values: mainput });
 plot('trima', trimavalues, { strokeColor : trimacolor, lineWidth : lineWidth });
 var meta = {
     overlay: true,
-    name: 'Triangular Moving Average (trima)',
+    name: 'Triangular Moving Average (TRIMA)',
     useOwnScale: false,
     scaleRange: [0, 0],
     fixedRange: [0, 0],

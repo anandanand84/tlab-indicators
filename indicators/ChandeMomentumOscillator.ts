@@ -5,7 +5,7 @@ var results = cmo({values, period});
 plot('cmo', results, { strokeColor : color , lineWidth : inputLineWidth('LineWidth', 2)});
 var meta = {
     overlay: false,
-    name: 'Chande Momentum Oscillator', 
+    name: 'Chande Momentum Oscillator (CMO)', 
     useOwnScale: false,
     scaleRange: [0, 0],
     fixedRange: [0, 0],

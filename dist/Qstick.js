@@ -7,7 +7,7 @@ plot('qstick', results, { strokeColor: color, plotType: AvailablePlotType.Histog
 plot('ema', ema({ values: results, period: emaPeriod }), { strokeColor: inputColor('EMA Color'), lineWidth: inputLineWidth('EMA Line Width', 1) });
 var meta = {
     overlay: false,
-    name: 'Qstick',
+    name: 'Qstick (QSTICK)',
     useOwnScale: false,
     scaleRange: [0, 0],
     fixedRange: [0, 0],

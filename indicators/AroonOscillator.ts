@@ -7,7 +7,7 @@ var fillColor = results.map((val) => {
 fill('aroonosc', results, results.map(r=>0) , {fillColor , lineWidth : inputLineWidth('LineWidth', 2), strokeBorder : true})
 var meta = {
     overlay: false,
-    name: 'Aroon',
+    name: 'Aroon Oscillator (AROONOSC)',
     useOwnScale: false,
     scaleRange: [0, 0],
     fixedRange: [-110, 110],

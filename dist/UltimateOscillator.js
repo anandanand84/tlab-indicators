@@ -7,7 +7,7 @@ let results = ultosc({ high, low, close, short_period, long_period, medium_perio
 plot('utlosc', results, { strokeColor: color });
 var meta = {
     overlay: false,
-    name: 'Ultimate Oscillator',
+    name: 'Ultimate Oscillator (ULTOSC)',
     useOwnScale: false,
     scaleRange: [0, 0],
     fixedRange: [0, 0],

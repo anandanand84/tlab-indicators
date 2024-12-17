@@ -6,7 +6,7 @@ var wmavalues = wma({ period: wmaperiod, values: mainput });
 plot('wma', wmavalues, { strokeColor : wmacolor, lineWidth : lineWidth });
 var meta = {
     overlay: true,
-    name: 'Weighted Moving Average (wma)',
+    name: 'Weighted Moving Average (WMA)',
     useOwnScale: false,
     scaleRange: [0, 0],
     fixedRange: [0, 0],

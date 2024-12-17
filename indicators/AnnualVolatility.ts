@@ -12,7 +12,7 @@ plot(`volatility`, results, {
 
 var meta = {
     overlay: false,
-    name: 'Annual Volatility',
+    name: 'Annual Volatility (AVOL)',
     useOwnScale: false,
     scaleRange: [0, 0],
     fixedRange: [0, 0],

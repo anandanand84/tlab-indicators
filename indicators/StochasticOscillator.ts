@@ -23,7 +23,7 @@ hfill('Range', overSold, overBought,  {
 
 var meta = {
     overlay: false,
-    name: 'Stochastic Oscillator',
+    name: 'Stochastic Oscillator (STOCH)',
     useOwnScale: false,
     scaleRange: [0, 0],
     fixedRange: [0, 0],

@@ -6,7 +6,7 @@ var wildersvalues = wilders({ period: wildersperiod, values: mainput });
 plot('wilders', wildersvalues, { strokeColor : wilderscolor, lineWidth : lineWidth });
 var meta = {
     overlay: true,
-    name: 'Wilders Smoothing (wilders)',
+    name: 'Wilders Smoothing (WILDERS)',
     useOwnScale: false,
     scaleRange: [0, 0],
     fixedRange: [0, 0],

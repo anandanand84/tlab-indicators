@@ -6,7 +6,7 @@ var vwmavalues = vwma({ period: vwmaperiod, volume: this.data.volume, close: mai
 plot('vwma', vwmavalues, { strokeColor: vwmacolor, lineWidth: lineWidth });
 var meta = {
     overlay: true,
-    name: 'Volume Weighted Moving Average (vwma)',
+    name: 'Volume Weighted Moving Average (VWMA)',
     useOwnScale: false,
     scaleRange: [0, 0],
     fixedRange: [0, 0],

@@ -9,6 +9,6 @@ var meta = {
     scaleRange: [0, 0],
     fixedRange: [0, 0],
     useFixedRange: false,
-    name: 'Detrended Price Oscillator (APO)'
+    name: 'Detrended Price Oscillator (DPO)'
 };
 export { meta };

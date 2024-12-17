@@ -12,7 +12,7 @@ plot(`trix`, results, {
 
 var meta = {
     overlay: false,
-    name: 'TRIX',
+    name: 'TRIX (TRIX)',
     useOwnScale: false,
     scaleRange: [0, 0],
     fixedRange: [-20, 120],
