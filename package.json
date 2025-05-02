@@ -9,6 +9,7 @@
   "dependencies": {
     "@babel/core": "^7.23.6",
     "@babel/parser": "^7.23.6",
+    "@babel/traverse": "^7.27.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2"
   },
   "keywords": [
